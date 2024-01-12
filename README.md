@@ -6,7 +6,8 @@ Easily insert, annotate and remove console.log statements
 
 ## Installing
 
-This extension is available for free in the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=whtouche.vscode-js-console-utils)
+<!-- This extension is available for free in the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=whtouche.vscode-js-console-utils) -->
+This extension is not available in the Visual Studio Code Marketplace now, but you can install it from the [VSIX file](https://github.com/luofc/vscode-js-console-utils-plus/releases/download/v1.0.0/vscode-js-console-utils-plus-1.0.0.vsix).
 
 ## Usage
 
