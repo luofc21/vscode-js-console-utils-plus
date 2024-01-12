@@ -2,7 +2,7 @@
     "name": "vscode-js-console-utils-plus",
     "displayName": "javascript console utils plus",
     "description": "Help insert, remove and annotate console.(*) statements",
-    "version": "1.0.0",
+    "version": "1.0.0-alpha",
     "publisher": "luofc",
     "repository": "https://github.com/luofc21/vscode-js-console-utils-plus",
     "engines": {
@@ -61,7 +61,7 @@
                 },
                 "console.formatText": {
                     "type": "string",
-                    "default": "",
+                    "default": "'variable:', variable",
                     "description": "format the chosen text to insert in console.log statement."
                 }
             }
