@@ -14,6 +14,7 @@ With selection:
 * Highlight a variable (or really any text)
 * Press Cmd+Shift+L
 * The output (on a new line) will be: console.log('variable: ', variable);
+* Config the output format in the extension settings (console.formatText: 'variable ===>', varible), the output will be: console.log('variable ===>', varible);
 
 Without selection:
 * Press Cmd+Shift+L
@@ -22,6 +23,10 @@ Without selection:
 To remove console.logs:
 * Press Cmd+Shift+D
 * This will delete all console.log statements in the current document
+
+To annotate console.logs:
+* Press Cmd+Shift+A
+* This will annotate all console.log statements in the current document
 
 ## To Do
 * Add support for other console.* methods (warn, error, time, timeEnd, etc)

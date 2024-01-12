@@ -1,10 +1,10 @@
 {
-    "name": "vscode-js-console-utils",
-    "displayName": "javascript console utils",
-    "description": "Help insert and remove console.(*) statements",
-    "version": "0.7.0",
-    "publisher": "whtouche",
-    "repository": "https://github.com/whtouche/vscode-js-console-utils",
+    "name": "vscode-js-console-utils-plus",
+    "displayName": "javascript console utils plus",
+    "description": "Help insert, remove and annotate console.(*) statements",
+    "version": "1.0.0",
+    "publisher": "luofc",
+    "repository": "",
     "engines": {
         "vscode": "^1.5.0"
     },
@@ -13,7 +13,8 @@
     ],
     "activationEvents": [
         "onCommand:extension.insertLogStatement",
-        "onCommand:extension.deleteAllLogStatements"
+        "onCommand:extension.deleteAllLogStatements",
+        "onCommand:extension.annotateAllLogStatements"
     ],
     "main": "./extension",
     "contributes": {
@@ -25,32 +26,57 @@
             {
                 "command": "extension.deleteAllLogStatements",
                 "title": "Delete all console.log statements"
+            },
+            {
+                "command": "extension.annotatellLogStatements",
+                "title": "Delete all console.log statements"
             }
         ],
         "keybindings": [
             {
                 "command": "extension.insertLogStatement",
-                "key": "shift+ctrl+l",
-                "mac": "shift+cmd+l",
+                "key": "shift+ctrl+w",
+                "mac": "shift+cmd+w",
                 "when": "editorTextFocus"
             },
             {
                 "command": "extension.deleteAllLogStatements",
                 "key": "shift+ctrl+d",
                 "mac": "shift+cmd+d"
+            },
+            {
+                "command": "extension.annotatellLogStatements",
+                "key": "shift+ctrl+a",
+                "mac": "shift+cmd+a"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "string",
+            "title": "vscode-js-console-utils-plus",
+            "properties": {
+                "console.showTime": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "show the time when console log statement is inserted."
+                },
+                "console.formatText": {
+                    "type": "string",
+                    "default": "",
+                    "description": "format the chosen text to insert in console.log statement."
+                }
+            }
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
+        "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "eslint": "^3.6.0",
+        "mocha": "^2.3.3",
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0"
     }
 }

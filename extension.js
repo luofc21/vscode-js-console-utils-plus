@@ -29,7 +29,7 @@ function getAllLogStatements(document, documentText) {
                 document.positionAt(match.index + match[0].length)
             );
         if (!matchRange.isEmpty)
-            logStatements.push(matchRange);
+            logStatements.push(matchRange); 
     }
     return logStatements;
 }
@@ -46,6 +46,17 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
     });
 }
 
+function annotateFoundLogStatements(workspaceEdit, doc, logs) {
+    logs.forEach((log) => {
+        workspaceEdit.insert(doc.uri, log.start, `// `);
+    });
+
+    vscode.workspace.applyEdit(workspaceEdit).then(() => {
+        logs.length > 1
+            ? vscode.window.showInformationMessage(`${logs.length} console.logs annotated`)
+            : vscode.window.showInformationMessage(`${logs.length} console.log annotated`);
+    });
+}
 function activate(context) {
     console.log('console-log-utils is now active');
 
@@ -55,11 +66,13 @@ function activate(context) {
 
         const selection = editor.selection;
         const text = editor.document.getText(selection);
+        const formatText = vscode.workspace.getConfiguration().get('console.formatText') // 自定义格式化样式配置
+        const pureFormatText = formatText.replaceAll('variable', text);
 
         text
             ? vscode.commands.executeCommand('editor.action.insertLineAfter')
                 .then(() => {
-                    const logToInsert = `console.log('${text}: ', ${text});`;
+                    const logToInsert = `console.log(${formatText ? pureFormatText : `'${text}:', ${text}`});`;
                     insertText(logToInsert);
                 })
             : insertText('console.log();');
@@ -81,6 +94,21 @@ function activate(context) {
         deleteFoundLogStatements(workspaceEdit, document.uri, logStatements);
     });
     context.subscriptions.push(deleteAllLogStatements);
+
+    const annotatellLogStatements = vscode.commands.registerCommand('extension.annotatellLogStatements', () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) { return; }
+
+        const document = editor.document;
+        const documentText = editor.document.getText();
+
+        let workspaceEdit = new vscode.WorkspaceEdit();
+
+        const logStatements = getAllLogStatements(document, documentText);
+
+        annotateFoundLogStatements(workspaceEdit, document, logStatements);
+    });
+    context.subscriptions.push(annotatellLogStatements);
 }
 exports.activate = activate;
 
