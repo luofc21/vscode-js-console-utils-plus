@@ -1,4 +1,4 @@
-## vscode-js-console-utils
+## vscode-js-console-utils-plus
 
 Easily insert, annotate and remove console.log statements
 
@@ -17,6 +17,7 @@ With selection:
 * Press Cmd+Shift+W
 * The output (on a new line) will be: console.log('variable: ', variable);
 * Config the output format in the extension settings (console.formatText: 'variable ===>', varible), the output will be: console.log('variable ===>', varible);
+![img](./assets/images/config.png)
 
 Without selection:
 * Press Cmd+Shift+W
